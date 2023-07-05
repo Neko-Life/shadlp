@@ -306,6 +306,13 @@ int run_server()
 	app.get("/music/:id", get_static_serve_handler("music/"));
 	app.get("/meta/:id", get_static_serve_handler("meta/"));
 
+	// !TODO
+	app.post("/ytdownload/:id", [](uWS::HttpResponse<UWS_WITH_SSL> *res,
+				       uWS::HttpRequest *req) {
+		std::cout << req->getParameter(0);
+		res->end();
+	});
+
 	int err = load_app_files_cache(DASHBOARD_APP_PATH);
 
 	if (err == 0)
